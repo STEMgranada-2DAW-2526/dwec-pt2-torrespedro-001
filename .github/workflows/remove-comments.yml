@@ -1,0 +1,37 @@
+name: Remove React Comments
+
+on: [push, pull_request]
+
+jobs:
+  clean_comments:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Remove JS/TS/JSX/TSX comments (//, /* */, {/**/})
+        run: |
+          # Quita comentarios // línea
+          find . -type f \( -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" \) \
+            -exec sed -i 's/\/\/.*$//g' {} \;
+
+          # Quita comentarios /* ... */
+          find . -type f \( -name "*.js" -o -name "*.jsx" -o -name "*.ts" -o -name "*.tsx" \) \
+            -exec sed -i ':a;N;$!ba;s@/\*.*\*/@@g' {} \;
+
+          # Quita comentarios JSX tipo {/* ... */}
+          find . -type f \( -name "*.jsx" -o -name "*.tsx" \) \
+            -exec sed -i 's/{\/\*[^*]*\*\/}//g' {} \;
+
+      - name: Check for diff
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "❌ Se han detectado comentarios en el código."
+            echo "Elimina TODOS los comentarios antes de subir."
+            echo "Archivos modificados:"
+            git status --porcelain
+            exit 1
+          else
+            echo "✔ No se encontraron comentarios prohibidos."
+          fi

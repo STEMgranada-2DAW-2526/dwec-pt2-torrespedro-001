@@ -25,10 +25,18 @@ const EstadoJuego = {
   ]
 };
 
-function calcularDañoMejoras(estado) {
+function calcularDanioMejoras(estado) {
   let total = 1;
   if (estado.mejoras.canon) total += 2;
   if (estado.mejoras.renos) total += 5;
   if (estado.mejoras.arbol) total += 10;
   return total;
 }
+
+function reductor(estado, accion) {
+  if (accion.tipo === "DISPARAR") {
+    if (estado.danioActual < estado.danioObjetivo && estado.caramelos > 0) {
+      return {
+        danioActual: estado.danioActual + calcularDanioMejoras(estado),
+        danioObjetivo: estado.danioObjetivo,
+        

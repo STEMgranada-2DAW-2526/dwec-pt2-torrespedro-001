@@ -55,3 +55,7 @@ function reductor(estado, accion) {
     return estado;
   }
   
+  if (accion.tipo === "BUY_MULTIPLIER") {
+    if (estado.caramelos >= estado.precioMultiplicador) {
+      return {
+        danioAcum

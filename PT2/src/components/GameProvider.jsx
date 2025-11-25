@@ -111,4 +111,28 @@ function reductor(estado, accion) {
     }
     return estado;
   }
-  
+  if (accion.tipo === "NEXT_WAVE") {
+    return {
+      danioAcumulado: 0,
+      danioObjetivo: Math.floor(estado.danioObjetivo * 1.1),
+      caramelosSangrientos: estado.caramelosSangrientos + 10,
+      oleada: estado.oleada + 1,
+      disparosPorSegundo: estado.disparosPorSegundo,
+      mejoras: estado.mejoras,
+      mejorasAuto: estado.mejorasAuto,
+      precioMultiplicador: estado.precioMultiplicador,
+    };
+  }
+  return estado;
+}
+
+export const ContextoJuego = createContext();
+
+export function ProveedorJuego({ children }) {
+  const [estado, despachar] = useReducer(reductor, estadoInicial);
+  return (
+    <ContextoJuego.Provider value={{ estado, despachar }}>
+      {children}
+    </ContextoJuego.Provider>
+  );
+}

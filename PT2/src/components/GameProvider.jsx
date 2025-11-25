@@ -58,4 +58,10 @@ function reductor(estado, accion) {
   if (accion.tipo === "BUY_MULTIPLIER") {
     if (estado.caramelos >= estado.precioMultiplicador) {
       return {
-        danioAcum
+        danioAcumulado: estado.danioAcumulado,
+        danioObjetivo: estado.danioObjetivo,
+        caramelos: estado.caramelos - estado.precioMultiplicador,
+        oleada: estado.oleada,
+        disparosPorSegundo: estado.disparosPorSegundo + 1,
+        mejoras: estado.mejoras,
+        mejorasAuto: 

@@ -3,8 +3,8 @@ import { createContext, useReducer } from "react";
 const Cantidad_Mejoras = 3;
 
 const EstadoJuego = {
- dañoAcumulado: 0,
-  dañoObjetivo: 100,
+ danioAcumulado: 0,
+  danioObjetivo: 100,
   caramelosSangrientos: 20,
   oleada: 1,
   disparosPorSegundo: 1,
@@ -129,9 +129,9 @@ function reductor(estado, accion) {
 export const ContextoJuego = createContext();
 
 export function ProveedorJuego({ children }) {
-  const [estado, despachar] = useReducer(reductor, estadoInicial);
+  const [estado, dispatch] = useReducer(reductor, estadoInicial);
   return (
-    <ContextoJuego.Provider value={{ estado, despachar }}>
+    <ContextoJuego.Provider value={{ estado, dispatch }}>
       {children}
     </ContextoJuego.Provider>
   );

@@ -35,11 +35,6 @@ export default function Juego() {
           Siguiente Oleada
         </button>
       )}
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Cannon_clip_art.svg"
-        alt="Cañón"
-        width={120}
-      />
       <PanelMejoras estado={estado} dispatch={dispatch} />
     </div>
   );

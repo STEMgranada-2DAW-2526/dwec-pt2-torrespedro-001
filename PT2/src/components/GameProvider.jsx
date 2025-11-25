@@ -26,7 +26,7 @@ function calcularDanioMejoras(estado) {
 }
 
 function reductor(estado, accion) {
-  if (accion.tipo === "DISPARAR") {
+  if (accion.tipo === "CLICK_SHOOT") {
     if (estado.danioActual < estado.danioObjetivo && estado.caramelosSangrientos > 0) {
       return {
         danioActual: estado.danioActual + calcularDanioMejoras(estado),

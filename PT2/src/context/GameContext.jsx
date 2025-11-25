@@ -3,13 +3,18 @@ import { createContext, useEffect, useReducer } from "react";
 export const GameContext = createContext();
 
 const EstadoJuego = {
-  cantidadGalletas: 0,
-  cantidadCursores: 0,
+
+  cantidadCaramelosSangrientos: 0,
+  cantidadCanionTurronExplosivo: 0,
+  cantidadRenosLanzamisiles: 0,
+  cantidadArbolNavidadLaser: 0,
+
   multiplicadorDeClic: 1,
-  cantidadAbuelas: 0,
+
   precioCanionTurronExplosivo: 15,
   precioRenosLanzamisiles: 30,
   precioArbolNavidadLaser: 50,
+
   incrementoPrecioMultiplicador: 1.2,
   incrementoPrecioCursor: 1.1,
   incrementoPrecioAbuela: 1.3,
@@ -19,3 +24,4 @@ const EstadoJuego = {
     { id: 3, objetivo: 100, recompensa: 200, estado: "no disponible", progreso: 0 }
   ]
 };
+

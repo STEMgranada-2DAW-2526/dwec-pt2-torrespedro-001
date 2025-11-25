@@ -85,4 +85,30 @@ function reductor(estado, accion) {
       };
     }
 
-
+    if (accion.nombre === "renosLanzamisiles" && !estado.mejoras.renosLanzamisiles && estado.caramelosSangrientos >= 30) {
+      return {
+        danioAcumulado: estado.danioAcumulado,
+        danioObjetivo: estado.danioObjetivo,
+        caramelosSangriento: estado.caramelosSangrientos - 30,
+        oleada: estado.oleada,
+        disparosPorSegundo: estado.disparosPorSegundo,
+        mejoras: { canonTurron: estado.mejoras.canonTurron, renosLanzamisiles: true, arbolNavidadLaser: estado.mejoras.arbolNavidadLaser },
+        mejorasAuto: estado.mejorasAuto,
+        precioMultiplicador: estado.precioMultiplicador,
+      };
+    }
+    if (accion.nombre === "arbolNavidadLaser" && !estado.mejoras.arbolNavidadLaser && estado.caramelosSangrientos >= 50) {
+      return {
+        danioAcumulado: estado.danioAcumulado,
+        danioObjetivo: estado.danioObjetivo,
+        caramelosSangrientos: estado.caramelosSangrientos - 50,
+        oleada: estado.oleada,
+        disparosPorSegundo: estado.disparosPorSegundo,
+        mejoras: { canonTurron: estado.mejoras.canonTurron, renos: estado.mejoras.renosLanzaMisiles, arbolNavidadLaser: true },
+        mejorasAuto: estado.mejorasAuto,
+        precioMultiplicador: estado.precioMultiplicador,
+      };
+    }
+    return estado;
+  }
+  

@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-export const GameContext = createContext();
+const Cantidad_Mejoras = 3;
 
 const EstadoJuego = {
 
@@ -45,6 +45,3 @@ function reductor(estado, accion) {
       };
     }
     return estado;
-  }
-  if (accion.tipo === "COMPRAR_MEJORA") {
-  }

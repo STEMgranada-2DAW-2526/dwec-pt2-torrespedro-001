@@ -39,4 +39,12 @@ function reductor(estado, accion) {
       return {
         danioActual: estado.danioActual + calcularDanioMejoras(estado),
         danioObjetivo: estado.danioObjetivo,
-        
+        caramelos: estado.caramelos - 1,
+        oleada: estado.oleada,
+        mejoras: estado.mejoras,
+      };
+    }
+    return estado;
+  }
+  if (accion.tipo === "COMPRAR_MEJORA") {
+  }
